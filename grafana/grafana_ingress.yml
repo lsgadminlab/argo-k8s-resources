@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - grafana.lab.qstetten.de
-      secretName: rancher-grafana-server-cert
+      secretName: grafana-cert
   rules:
     - host: "grafana.lab.qstetten.de"
       http:
