@@ -1,0 +1,9 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: external-service-registry
+subsets:
+  - addresses:
+      - ip: 192.168.178.50
+    ports:
+      - port: 5000

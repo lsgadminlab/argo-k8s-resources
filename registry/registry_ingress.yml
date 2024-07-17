@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: default-registry-auth-middleware@kubernetescrd
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: registry
+spec:
+  tls:
+    - hosts:
+        - registry.lab.qstetten.de
+      secretName: registry-cert
+  rules:
+    - host: "registry.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: external-service-registry
+                port:
+                  number: 80
