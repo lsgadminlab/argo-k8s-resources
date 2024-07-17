@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: hedgedoc
+spec:
+  selector:
+    app: hedgedoc
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 3000

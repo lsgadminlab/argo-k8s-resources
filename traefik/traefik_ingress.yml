@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: traefik-dashboard
+  namespace: kube-system
+spec:
+  tls:
+    - hosts:
+        - traefik.lab.qstetten.de
+      secretName: traefik-dashboard-cert
+  rules:
+    - host: "traefik.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: traefik-dashbaord
+                port:
+                  number: 80

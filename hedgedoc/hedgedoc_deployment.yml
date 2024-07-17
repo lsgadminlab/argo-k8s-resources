@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hedgedoc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hedgedoc
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxSurge: 1,  maxUnavailable: 0 }
+  template:
+    metadata:
+      labels:
+        app: hedgedoc
+    spec:
+      volumes:
+        - name: hedgedoc-public
+          persistentVolumeClaim:
+            claimName: hedgedoc-claim
+      containers:
+        - name: hedgedoc
+          volumeMounts:
+            - name: hedgedoc-public
+              mountPath: /hedgedoc/public/uploads
+          imagePullPolicy: IfNotPresent
+          env:
+            - name:  CMD_HSTS_ENABLE
+              value: "true"
+            - name: CMD_URL_ADDPORT
+              value: "false"
+            - name: CMD_DOMAIN
+              value: hedgedoc.lab.qstetten.de
+            - name: CMD_PROTOCOL_USESSL
+              value: "true"
+            - name: CMD_DB_URL
+              value: postgres://hedgedoc:hedgedoc@192.168.178.50:5432/hedgedoc
+          image: quay.io/hedgedoc/hedgedoc:1.9.9-alpine

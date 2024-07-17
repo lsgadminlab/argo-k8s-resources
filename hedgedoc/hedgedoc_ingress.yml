@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-hedgedoc-auth-middleware@kubernetescrd
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: hedgedoc
+spec:
+  tls:
+    - hosts:
+        - hedgedoc.lab.qstetten.de
+      secretName: hedgedoc-cert
+  rules:
+    - host: "hedgedoc.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: hedgedoc
+                port:
+                  number: 80
