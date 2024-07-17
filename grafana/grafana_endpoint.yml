@@ -1,9 +1,0 @@
-kind: Endpoints
-apiVersion: v1
-metadata:
-  name: external-service-grafana
-subsets:
-  - addresses:
-      - ip: 192.168.178.41
-    ports:
-      - port: 3000

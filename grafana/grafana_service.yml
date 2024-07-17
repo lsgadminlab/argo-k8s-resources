@@ -1,9 +1,0 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: external-service-grafana
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: 80

@@ -1,23 +1,24 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: cattle-monitoring-system
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: grafana
+  name: rancher-grafana
 spec:
   tls:
     - hosts:
-        - grafana.lab.qstetten.de
-      secretName: grafana-cert
+        - rancher-grafana.lab.qstetten.de
+      secretName: rancher-grafana-server-cert
   rules:
-    - host: "grafana.lab.qstetten.de"
+    - host: "rancher-grafana.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: external-service-grafana
+                name: rancher-monitoring-grafana
                 port:
                   number: 80
