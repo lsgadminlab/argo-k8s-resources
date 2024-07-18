@@ -4,21 +4,21 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: snake
-  namespace: snake-go
+  name: tetris
+  namespace: tetris
 spec:
   tls:
     - hosts:
-        - snake.lab.qstetten.de
-      secretName: snake-cert
+        - tetris.lab.qstetten.de
+      secretName: tetris-cert
   rules:
-    - host: "snake.lab.qstetten.de"
+    - host: "tetris.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: snake
+                name: tetris
                 port:
                   number: 80

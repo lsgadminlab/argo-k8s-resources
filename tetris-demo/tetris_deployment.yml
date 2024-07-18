@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris
+  namespace: tetris
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tetris
+  template:
+    metadata:
+      labels:
+        app: tetris
+    spec:
+      containers:
+      - name: tetris
+        image: sevenajay/tetrisv2:latest
+        ports:
+        - containerPort: 3000
