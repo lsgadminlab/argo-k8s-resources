@@ -5,7 +5,7 @@ metadata:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
   name: snake
-  name: pacman
+  namespace: snake-go
 spec:
   tls:
     - hosts:
