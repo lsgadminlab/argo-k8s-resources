@@ -20,4 +20,4 @@ spec:
               service:
                 name: uptime-service
                 port:
-                  number: 80
+                  number: 3001
