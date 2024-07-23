@@ -20,4 +20,4 @@ spec:
               service:
                 name: boinc
                 port:
-                  number: 80
+                  number: 31416
