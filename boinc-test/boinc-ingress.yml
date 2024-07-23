@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: boinc
+spec:
+  tls:
+    - hosts:
+        - boinc.lab.qstetten.de
+      secretName: boinc-cert
+  rules:
+    - host: "boinc.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: boinc
+                port:
+                  number: 80
