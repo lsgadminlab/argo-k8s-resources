@@ -26,9 +26,6 @@ spec:
               value: "123"
             - name: BOINC_CMD_LINE_OPTIONS
               value: "--allow_remote_gui_rpc"
-          volumeMounts:
-            - mountPath: /var/lib/boinc
-              name: boinc
           ports:
             - containerPort: 80
               name: http
