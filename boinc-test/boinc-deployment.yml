@@ -39,10 +39,6 @@ spec:
             - containerPort: 31416
               name: manager
               protocol: TCP
-      volumes:
-        - name: boinc
-          persistentVolumeClaim:
-            claimName: boinc-pvc
   selector:
     matchLabels:
       app: boinc
