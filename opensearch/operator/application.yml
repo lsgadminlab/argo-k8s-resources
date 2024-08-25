@@ -17,6 +17,7 @@ spec:
           - $opensearch/opensearch/operator/values.yml
     - repoURL: https://github.com/lsgadminlab/argo-k8s-resources/
       targetRevision: HEAD
+      path: opensearch
       ref: opensearch
   syncPolicy:
     automated:
