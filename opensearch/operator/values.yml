@@ -1,0 +1,45 @@
+apiVersion: opensearch.opster.io/v1
+kind: OpenSearchCluster
+metadata:
+  name: opensearch
+  namespace: opensearch
+spec:
+  security:
+    tls:
+      transport:
+        generate: false 
+        secret:
+          name: opensearch-transport-cert
+      http:
+        generate: false
+        secret:
+          name: opensearch-http-cert
+  general:
+    serviceName: opensearch
+    version: 2.3.0
+  dashboards:
+    enable: true
+    version: 2.3.0
+    replicas: 1
+    resources:
+      requests:
+         memory: "512Mi"
+         cpu: "200m"
+      limits:
+         memory: "512Mi"
+         cpu: "200m"
+  nodePools:
+    - component: nodes
+      replicas: 3
+      diskSize: "5Gi"
+      nodeSelector:
+      resources:
+         requests:
+            memory: "2Gi"
+            cpu: "500m"
+         limits:
+            memory: "2Gi"
+            cpu: "500m"
+      roles:
+        - "cluster_manager"
+        - "data"

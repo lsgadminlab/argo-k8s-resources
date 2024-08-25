@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: opensearch-transport-cert
+  namespace: opensearch-namespace
+spec:
+  secretName: opensearch-transport-cert
+  issuerRef:
+    name: letsencrypt-prod
+  commonName: opensearch.lab.qstetten.de
+  dnsNames:
+    - opensearch.lab.qstetten.de
+    - opensearch.lab.qstetten.de.svc.cluster.local
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
