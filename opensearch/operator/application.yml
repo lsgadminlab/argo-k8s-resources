@@ -14,7 +14,7 @@ spec:
       targetRevision: 2.6.0
       helm:
         valueFiles:
-          - $values/opensearch/operator/values.yml
+          - $opensearch/opensearch/operator/values.yml
     - repoURL: https://github.com/lsgadminlab/argo-k8s-resources/
       targetRevision: HEAD
       ref: opensearch

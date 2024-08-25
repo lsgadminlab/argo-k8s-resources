@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: opensearch-transport-cert
-  namespace: opensearch-namespace
+  namespace: opensearch
 spec:
   secretName: opensearch-transport-cert
   issuerRef:
