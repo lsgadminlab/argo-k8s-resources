@@ -19,6 +19,8 @@ spec:
       targetRevision: HEAD
       path: opensearch
       ref: opensearch
+      directory:
+        recurse: true
   syncPolicy:
     automated:
       prune: true
