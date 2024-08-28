@@ -8,12 +8,12 @@ spec:
     tls:
       transport:
         generate: false 
-        secret:
-          name: opensearch-transport-cert
+        #secret:
+         # name: opensearch-transport-cert
       http:
         generate: false
-        secret:
-          name: opensearch-http-cert
+        #secret:
+          #name: opensearch-http-cert
   general:
     serviceName: opensearch
     version: 2.3.0

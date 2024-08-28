@@ -17,10 +17,10 @@ spec:
           - $opensearch/opensearch/operator/values.yml
     - repoURL: https://github.com/lsgadminlab/argo-k8s-resources/
       targetRevision: HEAD
-      path: opensearch
+      path: opensearch/operator
       ref: opensearch
-      directory:
-        recurse: true
+      #directory:
+      #  recurse: true
   syncPolicy:
     automated:
       prune: true
