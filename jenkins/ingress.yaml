@@ -12,9 +12,9 @@ spec:
       paths:
       - backend:
           service:
-            name: jenkins
+            name: external-service-jenkins
             port:
-              number: 8080
+              number: 80
         path: /
         pathType: Prefix
   tls:
