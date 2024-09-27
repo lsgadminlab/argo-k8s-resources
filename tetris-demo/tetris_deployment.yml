@@ -18,3 +18,10 @@ spec:
         image: sevenajay/tetrisv2:latest
         ports:
         - containerPort: 3000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "0.5"
+            memory: "256Mi"
