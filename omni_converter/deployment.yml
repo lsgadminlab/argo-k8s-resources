@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omni-converter
+  namespace: omni-converter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omni-converter
+  template:
+    metadata:
+      labels:
+        app: omni-converter
+    spec:
+      containers:
+      - name: omni-converter
+        image: docker.lab.qstetten.de/omni_converter:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
+
