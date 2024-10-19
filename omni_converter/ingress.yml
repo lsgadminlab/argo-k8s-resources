@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - omni_conv.lab.qstetten.de
+        - omni-conv.lab.qstetten.de
       secretName: omni-converter-cert
   rules:
-    - host: "omni_conv.lab.qstetten.de"
+    - host: "omni-conv.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
