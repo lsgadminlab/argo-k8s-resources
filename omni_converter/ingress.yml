@@ -10,9 +10,20 @@ spec:
   tls:
     - hosts:
         - omni-conv.lab.qstetten.de
+        - qstetten.de
       secretName: omni-converter-cert
   rules:
     - host: "omni-conv.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: omni-converter
+                port:
+                  number: 80
+    - host: "qstetten.de"
       http:
         paths:
           - pathType: Prefix
