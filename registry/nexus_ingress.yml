@@ -4,21 +4,21 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: docker-registry
+  name: registry
 spec:
   tls:
     - hosts:
-        - docker.lab.qstetten.de
-      secretName: docker-registry-cert
+        - nexus.lab.qstetten.de
+      secretName: registry-cert
   rules:
-    - host: "docker.lab.qstetten.de"
+    - host: "nexus.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: external-service-registry
+                name: external-service-nexus-ui
                 port:
                   number: 80
 

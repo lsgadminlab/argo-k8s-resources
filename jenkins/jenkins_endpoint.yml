@@ -1,9 +1,9 @@
 kind: Endpoints
 apiVersion: v1
 metadata:
-  name: external-service-registry
+  name: external-service-jenkins
 subsets:
   - addresses:
       - ip: 192.168.178.112
     ports:
-      - port: 8085
+      - port: 8080
