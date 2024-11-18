@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: luis-blog
+  namespace: luis-blog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: luis-blog
+  template:
+    metadata:
+      labels:
+        app: luis-blog
+    spec:
+      containers:
+        - name: luis-blog
+          image: docker.lab.qstetten.de/luis-blog:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+

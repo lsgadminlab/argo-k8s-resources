@@ -4,20 +4,21 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: boinc
+  name: luis-blog
+  namespace: luis-blog
 spec:
   tls:
     - hosts:
-        - boinc.lab.qstetten.de
-      secretName: boinc-cert
+        - lcarilla.de
+      secretName: luis-blog-cert
   rules:
-    - host: "boinc.lab.qstetten.de"
+    - host: "lcarilla.de"
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: boinc
+                name: luis-blog
                 port:
-                  number: 31416
+                  number: 80
