@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: luis-blog
-          image: docker.lab.qstetten.de/luis-blog:1.0.0
+          image: docker.lab.qstetten.de/luis-website:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
