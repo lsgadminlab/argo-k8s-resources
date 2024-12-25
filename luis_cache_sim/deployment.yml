@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: luis-cache-sim
-          image: docker.lab.qstetten.de/luis-cache-sim:0.0.1
+          image: docker.lab.qstetten.de/luis-cache-sim:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
