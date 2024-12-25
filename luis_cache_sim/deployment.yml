@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: luis-cache-sim
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: luis-cache-sim
+  template:
+    metadata:
+      labels:
+        app: luis-cache-sim
+    spec:
+      containers:
+        - name: luis-cache-sim
+          image: docker.lab.qstetten.de/luis-cache-sim:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
