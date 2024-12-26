@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: app
-            image: infoportal-api:0.0.4
+            image: docker.lab.qstetten.de/infoportal_api
             command: ["python", "main.py"]
             envFrom:
             - configMapRef:
