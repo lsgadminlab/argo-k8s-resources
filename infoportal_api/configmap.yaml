@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: infoportal-config
+  namespace: infoportal
+data:
+  WHATSAPP_API_URL: "http://whatsapp-api:3000"
+  SCHOOL: "losgymuc"
+  CLASS_NAME: "Q12"
+  API_URL: "https://api.schule-infoportal.de/v4"
+  DAYS_FILENAME: "data/days.json"
+  SUBSTITUTIONS_FILENAME: "data/substitutions.json"
+  WHATSAPP_GROUP: "Bilder im Flugzeug "

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: infoportal
+  name: whatsapp-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whatsapp-api
+  template:
+    metadata:
+      labels:
+        app: whatsapp-api
+    spec:
+      containers:
+      - name: whatsapp-api
+        image: chrishubert/whatsapp-web-api
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: whatsapp-data
+          mountPath: /app/.wwebjs_auth
+        env:
+          - name: BASE_WEBHOOK_URL
+            value: "http://whatsapp-api:3000/localCallbackExample"
+          - name: ENABLE_LOCAL_CALLBACK_EXAMPLE
+            value: "TRUE"
+          - name: MAX_ATTACHMENT_SIZE
+            value: "5000000"
+          - name: SET_MESSAGES_AS_SEEN
+            value: "TRUE"
+          - name: DISABLED_CALLBACKS
+            value: "message_ack|message_reaction"
+          - name: ENABLE_SWAGGER_ENDPOINT
+            value: "TRUE"
+      volumes:
+      - name: whatsapp-data
+        persistentVolumeClaim:
+          claimName: whatsapp-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whatsapp-api
+  namespace: infoportal
+spec:
+  selector:
+    app: whatsapp-api
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: ClusterIP

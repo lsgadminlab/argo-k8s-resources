@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: infoportal-updater
+  namespace: infoportal
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: app
+            image: infoportal-api:latest
+            command: ["python", "main.py"]
+            envFrom:
+            - configMapRef:
+                name: infoportal-config
+            - secretRef:
+                name: infoportal-secret
+            volumeMounts:
+            - name: app-data
+              mountPath: /app/data
+          volumes:
+          - name: app-data
+            persistentVolumeClaim:
+              claimName: app-data-pvc
+          restartPolicy: OnFailure
