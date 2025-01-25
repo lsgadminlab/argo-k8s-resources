@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: luis-tseytin-transformer
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - tseytin.lab.lcarilla.de
+      secretName: luis-tseytin-transformer-cert
+  rules:
+    - host: "tseytin.lab.lcarilla.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: luis-tseytin-transformer
+                port:
+                  number: 80
