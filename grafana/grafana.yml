@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - grafana.lab.qstetten.de
-      secretName: grafana-cert
+        - rancher-grafana.lab.qstetten.de
+      secretName: rancher-grafana-cert
   rules:
-    - host: "grafana.lab.qstetten.de"
+    - host: "rancher-grafana.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
