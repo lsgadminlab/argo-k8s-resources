@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: luis-tseytin-transformer
-          image: docker.lab.qstetten.de/luis-tseytin-transformer:2.3.0
+          image: docker.lab.qstetten.de/luis-tseytin-transformer:2.3.1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
