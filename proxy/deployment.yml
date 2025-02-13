@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: mitmproxy
-          image: docker.lab.qstetten.de/proxy:latest
+          image: docker.lab.qstetten.de/proxy:0.1
           ports:
             - containerPort: 8080
           resources:
