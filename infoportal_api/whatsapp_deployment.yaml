@@ -20,10 +20,10 @@ spec:
         - containerPort: 3000
         volumeMounts:
         - name: whatsapp-data
-          mountPath: /app/.wwebjs_auth
+          mountPath: /app/sessions
         env:
           - name: BASE_WEBHOOK_URL
-            value: "http://whatsapp-api:3000/localCallbackExample"
+            value: "http://whatsapp-api:3000/localCallbackExample"  # TODO: later change this to actual webhook URL
           - name: ENABLE_LOCAL_CALLBACK_EXAMPLE
             value: "TRUE"
           - name: MAX_ATTACHMENT_SIZE

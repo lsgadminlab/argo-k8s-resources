@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: luis-tseytin-transformer
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: luis-tseytin-transformer
+  template:
+    metadata:
+      labels:
+        app: luis-tseytin-transformer
+    spec:
+      containers:
+        - name: luis-tseytin-transformer
+          image: docker.lab.qstetten.de/luis-tseytin-transformer:2.3.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
