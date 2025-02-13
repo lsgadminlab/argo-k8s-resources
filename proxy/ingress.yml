@@ -4,12 +4,9 @@ metadata:
   name: proxy-ingress
   namespace: proxy
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  tls:
-    - hosts:
-        - proxy.lab.qstetten.de
-      secretName: proxy-qstetten-cert
   rules:
     - host: "proxy.lab.qstetten.de"
       http:
