@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romantik
+  namespace: romantik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: romantik
+  template:
+    metadata:
+      labels:
+        app: romantik
+    spec:
+      containers:
+        - name: romantik
+          image: docker.lab.qstetten.de/romantik_website:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+

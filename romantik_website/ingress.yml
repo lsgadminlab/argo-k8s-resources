@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: romantik
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - romantik.lab.qstetten.de
+      secretName: romantik-cert
+  rules:
+    - host: "romantik.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: romantik
+                port:
+                  number: 80
