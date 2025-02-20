@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: romantik
-          image: docker.lab.qstetten.de/romantic_website:0.0.1
+          image: docker.lab.qstetten.de/romantic_website:0.0.3
           imagePullPolicy: Always
           ports:
             - containerPort: 80
