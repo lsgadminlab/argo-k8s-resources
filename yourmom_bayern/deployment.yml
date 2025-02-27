@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: yourmom-bayern
-          image: docker.lab.qstetten.de/yourmom-bayern:0.0.1
+          image: docker.lab.qstetten.de/yourmom-bayern:0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 80
