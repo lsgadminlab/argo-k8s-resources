@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yourmom-bayern
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yourmom-bayern
+  template:
+    metadata:
+      labels:
+        app: yourmom-bayern
+    spec:
+      containers:
+        - name: yourmom-bayern
+          image: docker.lab.qstetten.de/yourmom-bayern:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
