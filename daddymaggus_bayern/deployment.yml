@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: daddymaggus-bayern
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: daddymaggus-bayern
+  template:
+    metadata:
+      labels:
+        app: daddymaggus-bayern
+    spec:
+      containers:
+        - name: daddymaggus-bayern
+          image: docker.lab.qstetten.de/daddymaggus-bayern:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
