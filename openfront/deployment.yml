@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: open-front
-        image: docker.lab.qstetten.de/open_front:0.1
+        image: docker.lab.qstetten.de/open_front:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
