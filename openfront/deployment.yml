@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-front
+  namespace: open-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-front
+  template:
+    metadata:
+      labels:
+        app: open-front
+    spec:
+      containers:
+      - name: open-front
+        image: docker.lab.qstetten.de/open_front:0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
+

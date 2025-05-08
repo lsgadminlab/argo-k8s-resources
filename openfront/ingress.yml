@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: open-front
+  namespace: open-front
+spec:
+  tls:
+    - hosts:
+        - open-front.lab.qstetten.de
+        - qstetten.de
+      secretName: open-front-cert
+  rules:
+    - host: "open-front.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: open-front
+                port:
+                  number: 80
+    - host: "qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: open-front
+                port:
+                  number: 80
