@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: redirect-daddymaggus-bayern
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - 1005448303.daddymaggus.bayern
+      secretName: 1005448303-daddymaggus-bayern-cert
+  rules:
+    - host: "1005448303.daddymaggus.bayern"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: redirect-daddymaggus-bayern
+                port:
+                  number: 80

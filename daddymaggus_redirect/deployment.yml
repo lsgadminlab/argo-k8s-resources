@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redirect-daddymaggus-bayern
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redirect-daddymaggus-bayern
+  template:
+    metadata:
+      labels:
+        app: redirect-daddymaggus-bayern
+    spec:
+      containers:
+        - name: redirect-daddymaggus-bayern
+          image: morbz/docker-web-redirect
+          imagePullPolicy: Always
+          env:
+            - name: REDIRECT_TARGET
+              value: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
