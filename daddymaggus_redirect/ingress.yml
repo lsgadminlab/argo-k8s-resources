@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - 1005448303.daddymaggus.bayern
-      secretName: 1005448303-daddymaggus-bayern-cert
+        - 6486165321.daddymaggus.bayern
+      secretName: 6486165321-daddymaggus-bayern-cert
   rules:
-    - host: "1005448303.daddymaggus.bayern"
+    - host: "6486165321.daddymaggus.bayern"
       http:
         paths:
           - pathType: Prefix
