@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: daddymaggus-bayern
-          image: docker.lab.qstetten.de/daddymaggus-bayern:0.0.1
+          image: docker.lab.qstetten.de/daddymaggus-bayern:0.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
