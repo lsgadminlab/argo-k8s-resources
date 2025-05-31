@@ -1,0 +1,90 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: docker-registry
+spec:
+  tls:
+    - hosts:
+        - docker.lab.qstetten.de
+      secretName: docker-registry-cert
+  rules:
+    - host: "docker.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: registry-proxy-service
+                port:
+                  number: 80
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry-proxy-nginx-config
+data:
+  default.conf: |
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://192.168.178.112:8085;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry-proxy
+  
+  template:
+    metadata:
+      labels:
+        app: registry-proxy
+    
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: registry-proxy-nginx-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-proxy-service
+spec:
+  selector:
+    app: registry-proxy
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

@@ -1,9 +1,0 @@
-kind: Endpoints
-apiVersion: v1
-metadata:
-  name: external-service-registry
-subsets:
-  - addresses:
-      - ip: 192.168.178.112
-    ports:
-      - port: 8085
