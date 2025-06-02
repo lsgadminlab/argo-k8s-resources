@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: quirin-website
+  namespace: quirin-website
+spec:
+  tls:
+    - hosts:
+        - info.lab.qstetten.de
+      secretName: quirin-website-cert
+  rules:
+    - host: "info.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: quirin-website
+                port:
+                  number: 80

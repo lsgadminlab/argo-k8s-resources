@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quirin-website
+  namespace: quirin-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quirin-website
+  template:
+    metadata:
+      labels:
+        app: quirin-website
+    spec:
+      containers:
+        - name: quirin-website
+          image: docker.lab.qstetten.de/quirin-website:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
