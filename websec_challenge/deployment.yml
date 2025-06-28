@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websec-challenge
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websec-challenge
+  template:
+    metadata:
+      labels:
+        app: websec-challenge
+    spec:
+      containers:
+        - name: websec-challenge
+          image: build-01:8085/websec-challenge:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+
