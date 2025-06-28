@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: websec-challenge
-          image: build-01:8085/websec-challenge:0.0.1
+          image: build-01:8085/websec-challenge:0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8123
