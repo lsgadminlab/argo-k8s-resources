@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: playtheparty-frontend
-          image: build-01:8085/playtheparty-frontend:0.0.8
+          image: build-01:8085/playtheparty-frontend:0.0.9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: playtheparty-api
-          image: build-01:8085/playtheparty-api:0.0.8
+          image: build-01:8085/playtheparty-api:0.0.9
           imagePullPolicy: Always
           env:
           - name: DATABASE_URL
