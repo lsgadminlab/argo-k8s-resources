@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playtheparty-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playtheparty-frontend
+  template:
+    metadata:
+      labels:
+        app: playtheparty-frontend
+    spec:
+      containers:
+        - name: playtheparty-frontend
+          image: sto-01:8085/playtheparty-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playtheparty-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playtheparty-api
+  template:
+    metadata:
+      labels:
+        app: playtheparty-api
+    spec:
+      containers:
+        - name: playtheparty-api
+          image: sto-01:8085/playtheparty-api:latest
+          imagePullPolicy: Always
+          env:
+          - name: DATABASE_URL
+            value: "mysql://root:root@sto-01:3306/playtheparty"
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playtheparty-frontend
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: playtheparty-frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playtheparty-api
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app: playtheparty-api
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: playtheparty
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - gossipgirl.yourmom.bayern
+      secretName: playtheparty-cert
+  rules:
+    - host: "gossipgirl.yourmom.bayern"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/api"
+            backend:
+              service:
+                name: playtheparty-api
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: playtheparty-frontend
+                port:
+                  number: 80
