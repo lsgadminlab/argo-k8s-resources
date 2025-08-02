@@ -44,6 +44,8 @@ spec:
           env:
           - name: DATABASE_URL
             value: "mysql://root:root@sto-01:3306/playtheparty"
+          - name: TZ
+            value: "Europe/Berlin"
           ports:
             - containerPort: 8000
       imagePullSecrets:
