@@ -47,9 +47,20 @@ spec:
   tls:
     - hosts:
         - single.paddelthanner.de
+        - best-tum-chair.paddelthanner.de
       secretName: single-paddelthanner-de-cert
   rules:
     - host: "single.paddelthanner.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paddelthanner
+                port:
+                  number: 80
+    - host: "best-tum-chair.paddelthanner.de"
       http:
         paths:
           - pathType: Prefix
