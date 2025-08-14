@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paddelthanner
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paddelthanner
+  template:
+    metadata:
+      labels:
+        app: paddelthanner
+    spec:
+      containers:
+        - name: paddelthanner
+          image: build-01:8085/paddelthanner:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paddelthanner
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: paddelthanner
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: playtheparty
+  namespace: default
+spec:
+  tls:
+    - hosts:
+        - single.paddelthanner.de
+      secretName: single-paddelthanner-de-cert
+  rules:
+    - host: "single.paddelthanner.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paddelthanner
+                port:
+                  number: 80
