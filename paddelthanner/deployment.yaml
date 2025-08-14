@@ -41,7 +41,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: playtheparty
+  name: paddelthanner
   namespace: default
 spec:
   tls:
