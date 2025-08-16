@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: paddelthanner
-          image: build-01:8085/paddelthanner:0.0.5
+          image: build-01:8085/paddelthanner:0.0.6
           imagePullPolicy: Always
           ports:
             - containerPort: 80
