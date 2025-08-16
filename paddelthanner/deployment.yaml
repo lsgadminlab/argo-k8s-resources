@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: paddelthanner
-          image: build-01:8085/paddelthanner:0.0.4
+          image: build-01:8085/paddelthanner:0.0.5
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -49,6 +49,9 @@ spec:
         - single.paddelthanner.de
         - best-tum-chair.paddelthanner.de
         - depperter.paddelthanner.de
+        - aua.paddelthanner.de
+        - paddelthanner.de
+        - gletscher.paddelthanner.de
       secretName: single-paddelthanner-de-cert
   rules:
     - host: "single.paddelthanner.de"
@@ -72,6 +75,36 @@ spec:
                 port:
                   number: 80
     - host: "depperter.paddelthanner.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paddelthanner
+                port:
+                  number: 80
+    - host: "paddelthanner.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paddelthanner
+                port:
+                  number: 80
+    - host: "gletscher.paddelthanner.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paddelthanner
+                port:
+                  number: 80
+    - host: "aua.paddelthanner.de"
       http:
         paths:
           - pathType: Prefix
