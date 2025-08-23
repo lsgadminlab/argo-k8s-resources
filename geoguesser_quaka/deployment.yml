@@ -18,7 +18,9 @@ spec:
           image: build-01:8085/geoguesser-quaka:0.0.2
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - name: http-app
+              containerPort: 3000
+              protocol: TCP
       imagePullSecrets:
         - name: regcred
 
