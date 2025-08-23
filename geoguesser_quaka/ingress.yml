@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: geoguesser-quaka
+  namespace: quaka
+spec:
+  tls:
+    - hosts:
+        - quaka.lab.qstetten.de
+      secretName: geoguesser-quaka-cert
+  rules:
+    - host: "quaka.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: geoguesser-quaka
+                port:
+                  number: 80

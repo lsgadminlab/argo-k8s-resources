@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: geoguesser-quaka
+  namespace: quaka
+spec:
+  ports:
+    - port: 80
+      targetPort: http-app
+      protocol: TCP
+  selector:
+    app: geoguesser-quaka
