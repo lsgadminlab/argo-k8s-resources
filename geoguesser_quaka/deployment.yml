@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: geoguesser-quaka
-          image: build-01:8085/geoguesser-quaka:0.0.4
+          image: build-01:8085/geoguesser-quaka:0.0.5
           imagePullPolicy: Always
           ports:
             - name: http-app
