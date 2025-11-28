@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - info.lab.qstetten.de
+        - santa.lab.qstetten.de
       secretName: santa-cert
   rules:
-    - host: "info.lab.qstetten.de"
+    - host: "santa.lab.qstetten.de"
       http:
         paths:
           - pathType: Prefix
