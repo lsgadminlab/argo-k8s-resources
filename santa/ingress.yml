@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: santa
+  namespace: santa
+spec:
+  tls:
+    - hosts:
+        - info.lab.qstetten.de
+      secretName: santa-cert
+  rules:
+    - host: "info.lab.qstetten.de"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: santa
+                port:
+                  number: 80

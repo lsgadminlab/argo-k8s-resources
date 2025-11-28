@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: santa
+  namespace: santa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: santa
+  template:
+    metadata:
+      labels:
+        app: santa
+    spec:
+      containers:
+        - name: santa
+          image: docker.lab.qstetten.de/santa:0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred
