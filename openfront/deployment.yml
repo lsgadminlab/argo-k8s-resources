@@ -21,4 +21,18 @@ spec:
         - containerPort: 80
       imagePullSecrets:
       - name: regcred
-
+spec:
+  containers:
+    - name: openfront
+      image: openfrontio/openfront:latest
+      ports:
+        - containerPort: 3000
+      env:
+        - name: CF_API_TOKEN
+          value: "dummy"
+        - name: CF_ACCOUNT_ID
+          value: "dummy"
+        - name: DOMAIN
+          value: "example.com"
+        - name: SUBDOMAIN
+          value: "openfront"
