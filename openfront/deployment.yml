@@ -33,6 +33,6 @@ spec:
         - name: CF_ACCOUNT_ID
           value: "dummy"
         - name: DOMAIN
-          value: "example.com"
+          value: "lab.lsgserver.me"
         - name: SUBDOMAIN
-          value: "openfront"
+          value: "ofio"
