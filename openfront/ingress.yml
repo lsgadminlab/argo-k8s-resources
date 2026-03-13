@@ -9,11 +9,11 @@ metadata:
 spec:
   tls:
     - hosts:
-        - open-front.lab.qstetten.de
+        - open-front.lsgserver.me
         - qstetten.de
       secretName: open-front-cert
   rules:
-    - host: "open-front.lab.qstetten.de"
+    - host: "open-front.lsgserver.me"
       http:
         paths:
           - pathType: Prefix
